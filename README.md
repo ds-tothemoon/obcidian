@@ -8,7 +8,7 @@ Use this template repository to get started with your own digital garden.
 
 Preview the template here: https://digital-garden-jekyll-template.netlify.app/
 
-- Based on Jekyll, a static website generator
+- Based on jekyll serve, a static website generator
 - Supports Roam-style double bracket link syntax to other notes
 - Creates backlinks to other notes automatically
 - Features link previews on hover
