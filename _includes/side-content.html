@@ -1,0 +1,75 @@
+<!-- TOC -->
+<script>
+  var content = document.querySelector('.markdown-body')
+  var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6, h7')
+  var headingMap = {}
+
+  Array.prototype.forEach.call(headings, function (heading) {
+      var id = heading.id ? heading.id : heading.textContent.trim().toLowerCase()
+                  .split(' ').join('-').replace(/[\!\@\#\$\%\^\&\*\(\):]/ig, '')
+      headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+      if (headingMap[id]) {
+        heading.id = id + '-' + headingMap[id]
+      } else {
+        heading.id = id
+      }
+    })
+
+  tocbot.init({
+    tocSelector: '.toc',
+    contentSelector: '.markdown-body',
+    headingSelector:'h1, h2, h3',
+    hasInnerContainers: false
+  });
+
+  $(document).ready(function(){
+    $('.toc').addClass('toc-absolute');
+
+    var toc_top = $('.toc').offset().top - 165;
+    $(window).scroll(function() {
+      if ($(this).scrollTop() >= toc_top) {
+        $('.toc').addClass('toc-fixed');
+        $('.toc').removeClass('toc-absolute');
+      } else {
+        $('.toc').addClass('toc-absolute');
+        $('.toc').removeClass('toc-fixed');
+      }
+    });
+  });
+</script>
+
+<style>
+  /* TOC */
+.toc-absolute {
+  position: absolute;
+  margin-top: 24px;
+}
+.toc-fixed {
+  position: fixed;
+  top: 165px;
+}
+
+.toc {
+  left: calc((100% - 1020px) / 2 - 250px);
+  width: 250px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.toc-list {
+  margin-top: 14px !important;
+  font-size: 0.9em;
+}
+
+.toc > .toc-list li {
+  margin-bottom: 14px;
+}
+
+.toc > .toc-list li:last-child {
+  margin-bottom: 0;
+}
+
+.toc > .toc-list li a {
+  text-decoration: none;
+}
+</style>
