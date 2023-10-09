@@ -1,6 +1,6 @@
 <!-- TOC -->
 <script>
-  var content = document.querySelector('.wrapper')
+  var content = document.querySelector('.markdown-content')
   var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6, h7')
   var headingMap = {}
 
@@ -17,7 +17,7 @@
 
   tocbot.init({
     tocSelector: '.toc',
-    contentSelector: '.wrapper',
+    contentSelector: '.markdown-content',
     headingSelector:'h1, h2, h3',
     hasInnerContainers: false
   });
